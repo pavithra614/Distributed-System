@@ -1,5 +1,9 @@
 const db = require('../config/db');
-const Poll = require('../../poll-service/models/poll');
+
+const path = require('path');
+
+const Poll = require(path.resolve(__dirname, '../../poll-service/models/poll'));
+
 
 const vote = async (req, res) => {
   try {
