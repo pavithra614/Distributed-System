@@ -1,7 +1,7 @@
 const db = require('../config/db');
-const Poll = require('../models/Poll');
+const Poll = require('../../poll-service/models/poll');
 
-exports.vote = async (req, res) => {
+const vote = async (req, res) => {
   try {
     const { pollId, optionId } = req.body;
     const userId = req.user.id;
@@ -13,11 +13,11 @@ exports.vote = async (req, res) => {
     }
 
     // Check if user has already voted
-    const [existingVote] = await db.execute(
+    const [existingVotes] = await db.execute(
       `SELECT * FROM votes WHERE user_id = ? AND poll_id = ?`,
       [userId, pollId]
     );
-    if (existingVote.length > 0) {
+    if (existingVotes.length > 0) {
       return res.status(400).json({ error: 'You have already voted in this poll' });
     }
 
@@ -32,3 +32,21 @@ exports.vote = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+const getVotesForOption = async (req, res) => {
+  try {
+    const { optionId } = req.params;
+
+    // Fetch votes for the specified option
+    const [votes] = await db.execute(
+      `SELECT * FROM votes WHERE option_id = ?`,
+      [optionId]
+    );
+
+    res.json({ votes });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { vote, getVotesForOption }; // Export both functions

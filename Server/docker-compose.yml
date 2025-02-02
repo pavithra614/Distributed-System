@@ -1,27 +1,35 @@
-version: '3'
 services:
   auth-service:
     build: ./auth-service
     ports:
-      - "5001:5001"
-    environment:
-      - JWT_SECRET=your_jwt_secret
+      - "5001:5000"
+    networks:
+      - app-network
+
   poll-service:
     build: ./poll-service
     ports:
-      - "5002:5002"
+      - "5002:5000"
+    networks:
+      - app-network
+
   vote-service:
     build: ./vote-service
     ports:
-      - "5003:5003"
-  api-gateway:
-    build: ./api-gateway
-    ports:
-      - "5000:5000"
+      - "5003:5000"
+    networks:
+      - app-network
+
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: voting_db
+      MYSQL_ROOT_PASSWORD: your-db-password
+      MYSQL_DATABASE: your-db-name
     ports:
       - "3306:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

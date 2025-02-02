@@ -1,0 +1,32 @@
+version: '3'
+services:
+  auth-service:
+    build:
+      context: ./auth-service
+    container_name: auth-service
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=localhost
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - DB_NAME=auth_db
+    networks:
+      - backend
+
+  poll-service:
+    build:
+      context: ./poll-service
+    container_name: poll-service
+    ports:
+      - 4000:4000
+    environment:
+      - NODE_ENV=production
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

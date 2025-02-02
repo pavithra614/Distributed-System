@@ -1,6 +1,6 @@
 const db = require('../../config/db');
 const Poll = require('../../models/Poll');
-const Option = require('../../models/Option');
+const Option = require('../../vote-service/models/option');
 
 // Create a poll
 exports.createPoll = async (req, res) => {
