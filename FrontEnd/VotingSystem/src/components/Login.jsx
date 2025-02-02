@@ -23,86 +23,78 @@ function Login() {
   };
 
   return (
-    <div className="container">
-      <div className="row justify-content-center align-items-center min-vh-100">
-        <div className="col-md-6 col-lg-4">
-          <div className="card shadow">
-            <div className="card-body p-5">
-              <h2 className="card-title text-center mb-4">Login</h2>
-              
-              {error && (
-                <div className="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              )}
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+        <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">Login</h2>
 
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="username" className="form-label">
-                    Username
-                  </label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <i className="bi bi-person"></i>
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="username"
-                      placeholder="Enter your username"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
+            {error}
+          </div>
+        )}
 
-                <div className="mb-4">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <i className="bi bi-lock"></i>
-                    </span>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      placeholder="Enter your password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="d-grid">
-                  <button 
-                    type="submit" 
-                    className="btn btn-primary btn-lg"
-                    disabled={isLoading}
-                  >
-                    {isLoading ? (
-                      <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        Logging in...
-                      </>
-                    ) : (
-                      'Login'
-                    )}
-                  </button>
-                </div>
-
-                <div className="text-center mt-4">
-                  <a href="#" className="text-decoration-none">
-                    Forgot password?
-                  </a>
-                </div>
-              </form>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+              Username
+            </label>
+            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+              <span className="px-3 text-gray-500">
+                <i className="bi bi-person"></i>
+              </span>
+              <input
+                type="text"
+                id="username"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
             </div>
           </div>
-        </div>
+
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              Password
+            </label>
+            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+              <span className="px-3 text-gray-500">
+                <i className="bi bi-lock"></i>
+              </span>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+          >
+            {isLoading ? (
+              <>
+                <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                Logging in...
+              </>
+            ) : (
+              'Login'
+            )}
+          </button>
+
+          <div className="text-center mt-4">
+            <a href="#" className="text-sm text-blue-600 hover:underline">
+              Forgot password?
+            </a>
+          </div>
+        </form>
       </div>
     </div>
   );
