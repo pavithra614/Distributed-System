@@ -1,0 +1,81 @@
+/* App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Login and Signup Forms */
+.auth-form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Poll List */
+.poll-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Create Poll Form */
+.create-poll-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.create-poll-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-poll-form .option-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.create-poll-form .option-input button {
+  background-color: #dc3545;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.create-poll-form .option-input button:hover {
+  background-color: #c82333;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #007bff;
+  color: white;
+  margin-top: auto;
+}
