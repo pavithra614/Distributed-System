@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { verifyUser, verifyAdmin } = require('../middleware/auth');
-const { createPoll, getActivePolls, deletePoll, updatePoll, getPollResults } = require('../controllers/poll');
+const { verifyUser, verifyAdmin } = require('../auth-service/middleware/auth');
+const { createPoll, getActivePolls, deletePoll, updatePoll, getPollResults } = require('../poll-service/controllers/poll');
 
 // Admin routes
 router.post('/', verifyUser, verifyAdmin, createPoll);  // ✅ Ensure createPoll is exported

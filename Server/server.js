@@ -3,7 +3,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const pollRoutes = require('./routes/poll');
 const voteRoutes = require('./routes/vote');
-const { verifyUser, verifyAdmin } = require('./middleware/auth');
+const { verifyUser, verifyAdmin } = require('./auth-service/middleware/auth');
 
 const app = express();
 app.use(express.json());
