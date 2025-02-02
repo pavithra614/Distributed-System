@@ -1,20 +1,24 @@
 const mysql = require('mysql2');
+require('dotenv').config();
 
-// Set up database connection
-const db = mysql.createConnection({
+const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to the database:', err);
-  } else {
-    console.log('Database connected');
-  }
-});
+// Using the promise version of getConnection()
+pool.promise().getConnection()
+  .then((connection) => {
+    console.log('Auth Service Database connected successfully!');
+    connection.release(); // Always release the connection when done
+  })
+  .catch((err) => {
+    console.error('Auth Service Database connection failed:', err.message);
+  });
 
-module.exports = db;
-
+module.exports = pool.promise();

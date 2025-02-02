@@ -1,4 +1,4 @@
-version: '3'
+
 
 services:
   auth-service:
@@ -15,7 +15,7 @@ services:
       context: ./poll-service
       dockerfile: Dockerfile
     ports:
-      - "5002:5000"
+      - "5002:5001"
     networks:
       - app-network
 
@@ -24,7 +24,7 @@ services:
       context: ./vote-service
       dockerfile: Dockerfile
     ports:
-      - "5003:5000"
+      - "5003:5002"
     networks:
       - app-network
 
